@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Ma Cave à Boissons</title>
+    <style>
+        body { font-family: Arial; max-width: 800px; margin: 0 auto; padding: 20px; }
+        h1 { color: #2c3e50; }
+        .boisson { 
+            background: #f8f9fa; 
+            padding: 15px; 
+            margin: 10px 0; 
+            border-radius: 5px;
+            border-left: 4px solid #3498db;
+        }
+        .stock-bas { color: #e74c3c; font-weight: bold; }
+    </style>
+</head>
+<body>
+    <h1>🍷 Bienvenue dans notre cave à boissons !</h1>
+    
+    <h2>Nos produits :</h2>
+    
+    {% if boissons %}
+        {% for boisson in boissons %}
+        <div class="boisson">
+            <h3>{{ boisson.nom }}</h3>
+            <p><strong>Catégorie :</strong> {{ boisson.get_categorie_display }}</p>
+            <p><strong>Prix :</strong> {{ boisson.prix }} FCFA</p>
+            <p><strong>Stock :</strong> 
+                {% if boisson.stock <= boisson.seuil_alerte %}
+                    <span class="stock-bas">{{ boisson.stock }} (Stock bas !)</span>
+                {% else %}
+                    {{ boisson.stock }}
+                {% endif %}
+            </p>
+            <p>{{ boisson.description|truncatechars:100 }}</p>
+        </div>
+        {% endfor %}
+        
+        <p><em>Total : {{ boissons|length }} boisson(s) disponible(s)</em></p>
+    {% else %}
+        <p>Aucune boisson disponible pour le moment.</p>
+    {% endif %}
+    
+    <hr>
+    <p>
+        <a href="/admin/">Administration</a> | 
+        <a href="/test/">Page test</a>
+    </p>
+</body>
+</html>

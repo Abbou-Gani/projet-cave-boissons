@@ -39,6 +39,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'cave_app',
 ]
+#AUTH_USER_MODEL = 'cave_app.Utilisateur' 
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
@@ -105,7 +106,7 @@ AUTH_PASSWORD_VALIDATORS = [
 
 LANGUAGE_CODE = 'fr-fr'
 
-TIME_ZONE = 'Burkina/Ouagadougou'
+TIME_ZONE = 'Africa/Ouagadougou'
 
 USE_I18N = True
 
